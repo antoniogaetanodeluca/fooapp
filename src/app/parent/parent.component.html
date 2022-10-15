@@ -1,1 +1,14 @@
-<p>parent works!</p>
+<div class="row">
+    <div class="col-12">
+      <h3>Parent component</h3>
+        <ul>
+            <li *ngFor="let item of universityList; let i = index;">
+                <app-child 
+                    [university]="item"
+                    (click)="getDetail(i)">        
+                </app-child>
+            </li>
+        </ul>
+      
+    </div>
+  </div>

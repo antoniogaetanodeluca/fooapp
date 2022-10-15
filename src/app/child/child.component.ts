@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { University } from '../models/common.model';
 
 @Component({
   selector: 'app-child',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./child.component.scss']
 })
 export class ChildComponent implements OnInit {
-
+  @Input() "university":University;
+  
   constructor() { }
 
   ngOnInit(): void {

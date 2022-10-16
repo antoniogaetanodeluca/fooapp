@@ -9,6 +9,8 @@ import { CommonService } from '../services/common.service';
 })
 export class ParentComponent implements OnInit {
   public universityList: University[] = [];
+  public universityListByName = <University>{};
+  public isLoading: boolean = false;
 
   constructor(private commonService: CommonService) { }
 
@@ -18,14 +20,21 @@ export class ParentComponent implements OnInit {
   }
 
   getAllUniversity(){
-    
+    this.isLoading = true;
     this.commonService.getAll().subscribe( (response)=>{
       this.universityList = response;
-      console.log(this.universityList);
+      this.isLoading = false;
     });
   }
 
-  getDetail(index){
-    
+  getDetailByName(name: string){
+    this.isLoading = true;
+    this.commonService.getDetailByName(name).subscribe(
+      (res)=>{
+        this.universityListByName = res;
+        this.isLoading = false;
+      }      
+    )
+    console.log(JSON.stringify(this.universityListByName));
   }
 }

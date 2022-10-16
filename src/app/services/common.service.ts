@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,  HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { University } from '../models/common.model';
@@ -14,7 +14,6 @@ export class CommonService {
   constructor(private http: HttpClient) { }
 
   private errorHandler(error: any): Promise<any> {
-    console.log("Errore ", error);
     return Promise.reject(error.message || error);
   }
 
@@ -23,6 +22,10 @@ export class CommonService {
     .pipe(
       catchError(this.errorHandler)
     )
+  }
+
+  getDetailByName(name: string): Observable<University>{
+    return this.http.get<University>(this.baseUrl+'/?cnome='+name).pipe(catchError(this.errorHandler));
   }
 
 }

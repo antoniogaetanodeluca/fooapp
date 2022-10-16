@@ -1,3 +1,5 @@
+<div class="loading" *ngIf="isLoading">please wait...</div>
+
 <div class="row">
     <div class="col-12">
       <h3>Parent component</h3>
@@ -5,10 +7,9 @@
             <li *ngFor="let item of universityList; let i = index;">
                 <app-child 
                     [university]="item"
-                    (click)="getDetail(i)">        
+                    (click)="getDetailByName(item.cnome)">        
                 </app-child>
             </li>
-        </ul>
-      
+        </ul>      
     </div>
   </div>
